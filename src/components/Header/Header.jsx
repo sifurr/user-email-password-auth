@@ -1,14 +1,23 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserFullNameContext } from "../Root/Root";
 
 
 const Header = () => {
 
-    const navLinks = <>
-        <li><NavLink to={`/`}>Home</NavLink></li>
-        <li><NavLink to={`/login`}>Login</NavLink></li>
-        <li><NavLink to={`/register`}>Register</NavLink></li>
-        <li><NavLink to={`/registerHero`}>Register Hero</NavLink></li>
-    </>
+    const { userFullName } = useContext(UserFullNameContext);
+
+    const navLinks =
+        <>
+            <li><NavLink to={`/`}>Home</NavLink></li>
+            <li><NavLink to={`/login`}>Login</NavLink></li>
+            <li><NavLink to={`/register`}>Register</NavLink></li>
+            <li><NavLink to={`/registerHero`}>Register Hero</NavLink></li>
+            {
+                userFullName && <li><NavLink to={`/`}>{userFullName}</NavLink></li> 
+            }
+        </>
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
